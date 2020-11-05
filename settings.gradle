@@ -1,3 +1,0 @@
-include ':androbim'
-include ':app'
-rootProject.name = "Library1"
