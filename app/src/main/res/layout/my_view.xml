@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="80dp">
+
+   <ImageView
+       android:layout_width="100dp"
+       android:id="@+id/profile_image_id"
+       android:src="@drawable/prr"
+       android:layout_height="80dp"/>
+
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_marginLeft="100dp"
+        android:paddingTop="10dp"
+        android:layout_height="match_parent"
+        android:layout_width="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:text="Srikanth AVS"
+            android:textColor="#333"
+            android:textStyle="bold"
+            android:textSize="22sp"
+            android:id="@+id/name_id"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="+919963439228"
+                android:textColor="#888"
+                android:textSize="15sp"
+                android:id="@+id/number_id"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:text="3:33 am"
+                android:textColor="#555"
+                android:textSize="16sp"
+                android:id="@+id/date_id"
+                android:layout_marginLeft="15dp"
+                android:layout_height="wrap_content"/>
+
+            </LinearLayout>
+
+
+         </LinearLayout>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_gravity="right|center"
+        android:layout_marginRight="40dp"
+        android:id="@+id/type_id"
+        android:src="@drawable/ic_baseline_call_missed_24"
+        android:layout_height="wrap_content"/>
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_gravity="right|center"
+        android:id="@+id/more_id"
+        android:src="@drawable/ic_baseline_more_vert_24"
+        android:layout_height="wrap_content"/>
+
+
+</FrameLayout>
