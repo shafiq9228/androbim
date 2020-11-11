@@ -1,10 +1,19 @@
 package com.library.androbim;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.pm.PackageManager;
+import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
+
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -15,7 +24,7 @@ import org.json.JSONObject;
 
 public class Easy {
 
-    Context context;
+    private Context context;
 
     ProgressDialog dialog;
 
@@ -23,14 +32,19 @@ public class Easy {
     AlertDialog dialog1;
 
 
+
     public Easy(Context context)
     {
         this.context = context;
         dialog = new ProgressDialog(context);
 
+
         alertDialog = new AlertDialog.Builder(context);
 
+
+
     }
+
 
     public void ShowToast(String S1)
     {
@@ -42,7 +56,17 @@ public class Easy {
     {
         dialog.setTitle(""+title);
         dialog.setMessage(""+msg);
+        dialog.setCancelable(false);
 
+    }
+
+    public ProgressDialog SampleDialog()
+    {
+        dialog.setTitle("Please Wait");
+        dialog.setMessage("Loading....");
+       dialog.setCancelable(false);
+
+       return dialog;
     }
 
     public void WriteAlertDialog(String Title, String Message,String PostiveButtonText, String NegativeButtonText,boolean Cancelable,final DialogInt dialogInterface)
@@ -52,7 +76,7 @@ public class Easy {
         alertDialog.setMessage(Message);
         alertDialog.setCancelable(Cancelable);
 
-        alertDialog.setNegativeButton(PostiveButtonText, new DialogInterface.OnClickListener() {
+        alertDialog.setNegativeButton(NegativeButtonText, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -60,7 +84,7 @@ public class Easy {
             }
         });
 
-        alertDialog.setPositiveButton(NegativeButtonText, new DialogInterface.OnClickListener() {
+        alertDialog.setPositiveButton(PostiveButtonText, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 dialogInterface.Positive(dialog);
@@ -71,6 +95,34 @@ public class Easy {
 
 
     }
+
+    public void WriteAlertDialogEasy(String Title, String Message,final DialogInt dialogInterface)
+    {
+
+        alertDialog.setTitle(Title);
+        alertDialog.setMessage(Message);
+        alertDialog.setCancelable(false);
+
+        alertDialog.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+                dialogInterface.Negative(dialog);
+            }
+        });
+
+        alertDialog.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialogInterface.Positive(dialog);
+            }
+        });
+
+        dialog1 = alertDialog.create();
+
+
+    }
+
 
 
     public void ShowAlertDialog(boolean bool)
@@ -97,6 +149,8 @@ public class Easy {
         }
 
     }
+
+
 
     public interface DialogInt
     {
@@ -132,6 +186,30 @@ public class Easy {
         void Response(JSONObject response, int RequestCode);
         void Error(VolleyError error, int RequestCode);
     }
+
+    public void Permissions(final String[] per, final Activity activity)
+    {
+
+
+        for (int i = 0 ;i<per.length;i++)
+        {
+            if(ContextCompat.checkSelfPermission(context,per[i]) == PackageManager.PERMISSION_GRANTED)
+            {
+               // Toast.makeText(context, "Hello go", Toast.LENGTH_SHORT).show();
+
+            }
+            else
+            {
+                ActivityCompat.requestPermissions(activity,per,1);
+            }
+        }
+
+
+
+    }
+
+
+
 
 
 
